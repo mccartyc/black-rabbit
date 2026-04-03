@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(npx tsx:*)",
+      "Bash(curl -s http://localhost:3001/api/call-count)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:3001/api/logs)",
+      "Bash(curl -s http://localhost:3001/api/listings?zipCode=123)",
+      "Bash(curl -s \"http://localhost:3001/api/listings?zipCode=123\")",
+      "Bash(curl -s \"http://localhost:3001/api/rent-estimate?listingId=abc\")",
+      "Bash(curl -s \"http://localhost:3001/api/listings?zipCode=83686\")",
+      "Bash(curl -s \"http://localhost:3001/api/logs\")",
+      "Bash(gh auth:*)",
+      "Bash(git -C /Users/cmccarty/Library/CloudStorage/OneDrive-Clearwater/Desktop/Development/black-rabbit init)",
+      "Bash(git -C /Users/cmccarty/Library/CloudStorage/OneDrive-Clearwater/Desktop/Development/black-rabbit add -A)",
+      "Bash(git -C /Users/cmccarty/Library/CloudStorage/OneDrive-Clearwater/Desktop/Development/black-rabbit status)"
+    ]
+  }
+}
