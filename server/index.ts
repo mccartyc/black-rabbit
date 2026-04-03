@@ -24,7 +24,9 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
   res.status(isLimitError ? 429 : 500).json({ error: err.message });
 });
 
-// Connect to MongoDB (non-fatal if unavailable) then start server
-connectDB().finally(() => {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-});
+// Start listening immediately so Vite proxy doesn't get ECONNREFUSED
+// while MongoDB is still connecting
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Connect to MongoDB in the background (non-fatal if unavailable)
+connectDB();
