@@ -52,6 +52,7 @@ export interface InvestmentAssumptions {
   managementPct: number;
   capexPct: number;
   closingCostPct: number;
+  targetCapRate: number;
 }
 
 export interface InvestmentMetrics {
@@ -82,4 +83,7 @@ export interface InvestmentMetrics {
   cashOnCash: number;
   grm: number | null;
   dscr: number | null;
+  maxPriceByCapRate: number;
+  maxPriceByOnePercent: number;
+  listingPriceVsMaxCapRate: number;
 }

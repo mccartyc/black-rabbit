@@ -136,6 +136,32 @@ export function InvestmentModal({ listing, assumptions, onClose }: Props) {
                   <Row label="Cap Rate" value={formatPercent(metrics.capRate)} />
                   <Row label="Cash on Cash" value={formatPercent(metrics.cashOnCash)} />
                 </Section>
+
+                <Section title="Max Purchase Price">
+                  <Row
+                    label={`Target Cap Rate (${formatPercent(assumptions.targetCapRate, 1)})`}
+                    value={formatCurrency(metrics.maxPriceByCapRate)}
+                    highlight
+                  />
+                  <Row
+                    label="1% Rule (rent × 100)"
+                    value={formatCurrency(metrics.maxPriceByOnePercent)}
+                  />
+                  <div style={{
+                    marginTop: 8,
+                    padding: '8px 10px',
+                    borderRadius: 'var(--radius-sm)',
+                    background: metrics.listingPriceVsMaxCapRate >= 0 ? 'var(--positive-dim)' : 'var(--negative-dim)',
+                    border: `1px solid ${metrics.listingPriceVsMaxCapRate >= 0 ? 'rgba(76,175,125,0.25)' : 'rgba(224,87,87,0.25)'}`,
+                    fontSize: 12,
+                    color: metrics.listingPriceVsMaxCapRate >= 0 ? 'var(--positive)' : 'var(--negative)',
+                  }}>
+                    {metrics.listingPriceVsMaxCapRate >= 0
+                      ? `Listed ${formatCurrency(metrics.listingPriceVsMaxCapRate)} under your max — potential deal`
+                      : `Listed ${formatCurrency(Math.abs(metrics.listingPriceVsMaxCapRate))} over your max — needs negotiation`
+                    }
+                  </div>
+                </Section>
               </div>
             </div>
 

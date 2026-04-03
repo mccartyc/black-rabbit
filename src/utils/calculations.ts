@@ -54,6 +54,22 @@ export function calculateMetrics(
   const grm = annualGrossRent > 0 ? price / annualGrossRent : null;
   const dscr = annualDebtService > 0 ? annualNOI / annualDebtService : null;
 
+  // Max purchase price
+  // Derived by solving: targetCapRate = NOI / Price, where NOI accounts for
+  // price-based expenses (tax, insurance, maintenance) and rent-based expenses
+  // (management, capex). Rearranges to:
+  // Price = effectiveAnnualRent * (1 - mgmt - capex) / (targetCapRate + tax + insurance + maintenance)
+  const targetCapRateDecimal = assumptions.targetCapRate / 100;
+  const maxPriceByCapRate =
+    annualEffectiveRent * (1 - assumptions.managementPct - assumptions.capexPct) /
+    (targetCapRateDecimal + assumptions.propertyTaxPct + assumptions.insurancePct + assumptions.maintenancePct);
+
+  // 1% rule: monthly rent * 100
+  const maxPriceByOnePercent = monthlyRent * 100;
+
+  // How far listing price is above/below the cap rate max (negative = overpriced)
+  const listingPriceVsMaxCapRate = maxPriceByCapRate - price;
+
   return {
     purchasePrice: price,
     downPayment,
@@ -82,6 +98,9 @@ export function calculateMetrics(
     cashOnCash,
     grm,
     dscr,
+    maxPriceByCapRate,
+    maxPriceByOnePercent,
+    listingPriceVsMaxCapRate,
   };
 }
 

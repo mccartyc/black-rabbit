@@ -12,6 +12,7 @@ const DEFAULTS: InvestmentAssumptions = {
   managementPct: 0.08,
   capexPct: 0.05,
   closingCostPct: 0.03,
+  targetCapRate: 6,
 };
 
 const STORAGE_KEY = 'br_assumptions';

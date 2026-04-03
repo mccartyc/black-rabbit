@@ -28,6 +28,7 @@ const FIELDS: FieldConfig[] = [
   { key: 'vacancyPct', label: 'Vacancy Rate', isPercent: true, step: 1, min: 0, max: 30 },
   { key: 'managementPct', label: 'Mgmt Fee (of rent)', isPercent: true, step: 1, min: 0, max: 20 },
   { key: 'capexPct', label: 'CapEx Reserve (of rent)', isPercent: true, step: 1, min: 0, max: 20 },
+  { key: 'targetCapRate', label: 'Target Cap Rate', isPercent: false, step: 0.5, min: 1, max: 20 },
 ];
 
 const inputStyle: CSSProperties = {
