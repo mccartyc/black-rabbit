@@ -37,9 +37,16 @@ router.get('/', async (req: Request, res: Response) => {
     }
   }
 
+  const RESIDENTIAL_TYPES = 'Single Family,Multi Family';
+
   const { data } = await axios.get('https://api.rentcast.io/v1/listings/sale', {
     headers: { 'X-Api-Key': process.env.RENTCAST_API_KEY },
-    params: { zipCode, status: 'Active', limit: Number(process.env.LISTINGS_LIMIT ?? 1) },
+    params: {
+      zipCode,
+      status: 'Active',
+      propertyType: RESIDENTIAL_TYPES,
+      limit: Number(process.env.LISTINGS_LIMIT ?? 1),
+    },
   });
 
   if (mongo) {
